@@ -23,12 +23,12 @@ public class DevDto {
 	private String name;
 	
 	@NotEmpty
-	private List<LanguageDto> linguagens = new ArrayList<LanguageDto>();
+	private List<LanguageDto> languages = new ArrayList<LanguageDto>();
 	
 	public DevDto(DevEntity entity) {
 		this.id = entity.getId();
 		this.name = entity.getName();
-		this.linguagens = entity.getLanguages().stream().map(LanguageDto::new).collect(Collectors.toList());
+		this.languages = entity.getLanguages().stream().map(LanguageDto::new).collect(Collectors.toList());
 	}
 
 }

@@ -37,7 +37,7 @@ public class DevEntity {
 	private List<LanguageEntitiy> languages;
 	
 	public DevEntity(DevDto dto) {
-		this.languages = dto.getLinguagens().stream().map(LanguageEntitiy::new).collect(Collectors.toList());
+		this.languages = dto.getLanguages().stream().map(LanguageEntitiy::new).collect(Collectors.toList());
 		this.name = dto.getName();
 		if(dto.getId() != null) {
 			this.id = dto.getId();
