@@ -27,7 +27,10 @@ public class LanguageEntitiy {
 	
 	
 	public LanguageEntitiy(LanguageDto dto) {
-		this.setName(dto.getNome());
+		this.name = dto.getName();
+		if(dto.getId() != null) {
+			this.id = dto.getId();
+		}
 	}
 	
 

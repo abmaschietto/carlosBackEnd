@@ -30,14 +30,17 @@ public class DevEntity {
 	private Long id;
 	
 	@Column(name = "DEVELOPER_NAME")
-	private String nome;
+	private String name;
 	
 	@ManyToMany(fetch = EAGER)
 	@JoinColumn(name = "DEVELOPER_FAV_LANGUAGES")
-	private List<LanguageEntitiy> linguagens;
+	private List<LanguageEntitiy> languages;
 	
 	public DevEntity(DevDto dto) {
-		this.setLinguagens(dto.getLinguagens().stream().map(LanguageEntitiy::new).collect(Collectors.toList()));
-		this.setNome(dto.getNome());
+		this.languages = dto.getLinguagens().stream().map(LanguageEntitiy::new).collect(Collectors.toList());
+		this.name = dto.getName();
+		if(dto.getId() != null) {
+			this.id = dto.getId();
+		}
 	}
 }

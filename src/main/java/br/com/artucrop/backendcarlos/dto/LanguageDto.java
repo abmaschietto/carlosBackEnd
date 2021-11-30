@@ -4,6 +4,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+import br.com.artucrop.backendcarlos.entities.LanguageEntitiy;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,9 +12,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LanguageDto {
 	
+	private Long id;
+	
 	@NotEmpty
 	@Length(min = 1)
-	private String nome;
+	private String name;
+	
+	public LanguageDto(LanguageEntitiy entitiy) {
+		this.id = entitiy.getId();
+		this.name = entitiy.getName();
+	}
 	
 
 }
