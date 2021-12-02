@@ -2,6 +2,8 @@ package br.com.artucrop.backendcarlos.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -38,19 +40,19 @@ public class DevController {
 	}
 	
 	@PostMapping(value = "/saveDev")
-	public ResponseEntity<DevDto> saveDev(@RequestBody DevDto dev){
+	public ResponseEntity<DevDto> saveDev(@RequestBody @Valid DevDto dev){
 		DevDto savedDev = devService.saveDev(dev);
 		return ResponseEntity.ok(savedDev);
 	}
 	
 	@PutMapping(value = "/update/{id}")
-	public ResponseEntity<DevDto> updateDev(@PathVariable Long id, @RequestBody DevDto dev){
+	public ResponseEntity<DevDto> updateDev(@PathVariable Long id, @RequestBody @Valid DevDto dev){
 		DevDto updatedDev = devService.updateDev(id, dev);
 		return ResponseEntity.ok(updatedDev);
 	}
 	
 	@DeleteMapping(value = "/deleteDev")
-	public ResponseEntity<String> deleteDev(@RequestBody DevDto dev){
+	public ResponseEntity<String> deleteDev(@RequestBody @Valid DevDto dev){
 		String deletedDev = devService.deleteDev(dev);
 		return ResponseEntity.ok(deletedDev);
 	}
