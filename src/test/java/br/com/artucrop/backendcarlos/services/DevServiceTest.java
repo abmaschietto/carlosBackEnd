@@ -121,7 +121,7 @@ class DevServiceTest {
 	@Test
 	void testDeleteDevByid() {
 		String deletetDevMessage = devService.deleteById(1l);
-		assertEquals("Dev " + "Pepe"+ " deletado com sucesso", deletetDevMessage);
+		assertEquals("Dev " + "Artur"+ " deletado com sucesso", deletetDevMessage);
 		verify(devRepository, atLeast(1)).deleteById(Mockito.anyLong());
 	}
 	

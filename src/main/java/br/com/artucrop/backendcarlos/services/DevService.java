@@ -15,6 +15,9 @@ import br.com.artucrop.backendcarlos.repository.DevRepository;
 public class DevService {
 	
 	@Autowired
+	private LanguageService languageService;
+	
+	@Autowired
 	private DevRepository devRepository;
 	
 	public List<DevDto> getAllDevs(){
@@ -24,6 +27,7 @@ public class DevService {
 	
 	public DevDto saveDev(DevDto dto) {
 		DevEntity savedDev = devRepository.save(new DevEntity(dto));
+//		languageService.linkLanguageToDev(savedDev, savedDev.getLanguages());
 		return new DevDto(savedDev);
 	}
 	

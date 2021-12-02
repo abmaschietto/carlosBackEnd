@@ -1,6 +1,5 @@
 package br.com.artucrop.backendcarlos.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +22,7 @@ public class DevDto {
 	private String name;
 	
 	@NotEmpty
-	private List<LanguageDto> languages = new ArrayList<LanguageDto>();
+	private List<LanguageDto> languages;
 	
 	public DevDto(DevEntity entity) {
 		this.id = entity.getId();
