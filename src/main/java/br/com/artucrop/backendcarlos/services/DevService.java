@@ -38,4 +38,17 @@ public class DevService {
 		return "Dev " + dto.getName() + " deletado com sucesso";
 	}
 
+	public String deleteById(long id) {
+		DevDto dev = findOneDev(id);
+		devRepository.delete(new DevEntity(dev));
+		return "Dev " + dev.getName() + " deletado com sucesso";
+	}
+	
+	public DevDto updateDev(Long id, DevDto dto) {
+		DevEntity dev = devRepository.findById(id).orElseThrow(() ->  new InvalidInformationException("Nenhum dev encontrado com este Id: " + id));
+		dev.updateDev(dto, id);
+		return new DevDto(dev);
+	}
+
+
 }

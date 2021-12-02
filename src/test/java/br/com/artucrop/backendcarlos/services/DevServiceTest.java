@@ -2,7 +2,6 @@ package br.com.artucrop.backendcarlos.services;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -13,10 +12,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -84,6 +81,7 @@ class DevServiceTest {
 		dev2.setId(2l);
 		dev2.setName("Carlos");
 		dev2.setLanguages(languagesCarlos);
+		Mockito.lenient().when(devRepository.findById(1l)).thenReturn(Optional.of(dev1));
 	}
 
 	@Test
@@ -107,7 +105,6 @@ class DevServiceTest {
 
 	@Test
 	void testFindOneDev() {
-		when(devRepository.findById(1l)).thenReturn(Optional.of(dev1));
 		DevDto findOneDev = devService.findOneDev(1l);
 		assertAll("Asserting list of devs return data", 
 				() -> assertEquals(2, findOneDev.getLanguages().size(), "List size is wrong"),
@@ -116,9 +113,25 @@ class DevServiceTest {
 
 	@Test
 	void testDeleteDev() {
-		String deletetDevMessage = devService.deleteDev(devDto);
-		assertEquals("Dev " + "Pepe"+ " deletado com sucesso", deletetDevMessage);
+		String deletetDevMessage = devService.deleteById(1l);
+		assertEquals("Dev " + "Artur"+ " deletado com sucesso", deletetDevMessage);
 		verify(devRepository, atLeast(1)).delete(Mockito.any(DevEntity.class));
+	}
+	
+	@Test
+	void testDeleteDevByid() {
+		String deletetDevMessage = devService.deleteById(1l);
+		assertEquals("Dev " + "Pepe"+ " deletado com sucesso", deletetDevMessage);
+		verify(devRepository, atLeast(1)).deleteById(Mockito.anyLong());
+	}
+	
+	@Test
+	void updateDev() {
+		DevDto updatedDev = devService.updateDev(1l, devDto);
+		assertAll("Asserting data from updated dev",
+				() -> assertEquals(1l, updatedDev.getId(), "Dev id is wrong"),
+				() -> assertEquals("Pepe", updatedDev.getName(), "Updated name is wrong"),
+				() -> assertEquals("Javascript", updatedDev.getLanguages().get(0).getName(), "Name of the language is wrong"));
 	}
 
 }
