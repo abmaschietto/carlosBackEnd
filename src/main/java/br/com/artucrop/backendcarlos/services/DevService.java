@@ -45,7 +45,8 @@ public class DevService {
 	
 	public DevDto updateDev(Long id, DevDto dto) {
 		DevEntity dev = devRepository.findById(id).orElseThrow(() ->  new InvalidInformationException("Nenhum dev encontrado com este Id: " + id));
-		dev.updateDev(dto, id);
+		dev.updateDevReference(dto, id);
+		devRepository.save(dev);
 		return new DevDto(dev);
 	}
 

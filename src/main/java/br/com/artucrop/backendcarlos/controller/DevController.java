@@ -56,5 +56,11 @@ public class DevController {
 		String deletedDev = devService.deleteDev(dev);
 		return ResponseEntity.ok(deletedDev);
 	}
+	
+	@DeleteMapping(value = "/deleteDev/{id}")
+	public ResponseEntity<String> deleteDev(@PathVariable Long id){
+		String deletedDev = devService.deleteById(id);
+		return ResponseEntity.ok(deletedDev);
+	}
 
 }

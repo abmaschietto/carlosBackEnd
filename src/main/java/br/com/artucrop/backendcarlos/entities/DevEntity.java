@@ -47,7 +47,7 @@ public class DevEntity {
 		}
 	}
 
-	public void updateDev(DevDto dto, Long id) {
+	public void updateDevReference(DevDto dto, Long id) {
 		this.languages = dto.getLanguages().stream().map(LanguageEntitiy::new).collect(Collectors.toList());
 		this.name = dto.getName();
 		this.id = id;
