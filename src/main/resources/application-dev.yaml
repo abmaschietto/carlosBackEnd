@@ -1,3 +1,16 @@
 spring:
-      profiles:
-              active: ${APP_PROFILE:dev}
+   jpa:
+     properties:
+         hibernate:
+            jdbc:
+                lob:
+                   non_contextual_creation: true
+            show_sql: true
+            format_sql: true
+            ddl-auto: update
+     generate-ddl: true
+              
+   datasource:
+        url: jdbc:postgresql://localhost:5432/CarlosBackEnd
+        username: postgres
+        password: admin   
