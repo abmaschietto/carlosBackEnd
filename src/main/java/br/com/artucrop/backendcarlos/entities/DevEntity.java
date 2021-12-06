@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -33,7 +34,7 @@ public class DevEntity {
 	@Column(name = "DEVELOPER_NAME")
 	private String name;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "dev_languages", joinColumns =
 	@JoinColumn(name = "LANGUAGE_ID"), 
 	inverseJoinColumns = @JoinColumn(name = "DEVELOPER_ID"))

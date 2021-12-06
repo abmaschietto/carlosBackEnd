@@ -18,7 +18,7 @@ public class DevDto {
 	private Long id;
 	
 	@NotEmpty
-	@Length(min = 3, max = 15)
+	@Length(min = 3, max = 45)
 	private String name;
 	
 	@NotEmpty
